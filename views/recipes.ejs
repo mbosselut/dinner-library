@@ -1,0 +1,8 @@
+<h1>This is the recipes page!</h1>
+
+<% recipes.forEach(function(recipe){ %>
+    <div>
+        <h4><%= recipe.name %></h4>
+        <img src="<%= recipe.image %>">
+    </div>
+<% }); %>
