@@ -2,16 +2,32 @@
 
 <div class="container">
     <header class="jumbotron">
-        <h1>This is the recipes page!</h1>
+        <div class="container">
+            <h1>Aad & Manon's recipe library</h1>
+            <p>Favorite recipes and new ones to experiment with !</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/recipes/new">Enter new recipe</a>
+            </p>
+        </div>
     </header>
-</div>
-<a href="/recipes/new">Enter new recipe</a>
 
-<% recipes.forEach(function(recipe){ %>
-    <div>
-        <h4><%= recipe.name %></h4>
-        <img src="<%= recipe.image %>">
+
+    <div class="row text-centerk " style="display:flex; flex-wrap:wrap;">
+        <div class="col-lg-12">
+            <h3>Our favorite recipes</h3>
+        </div>
+        <% recipes.forEach(function(recipe){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= recipe.image %>">
+                <div class="caption">
+                    <h4><%= recipe.name %></h4>
+                </div>
+            </div>
+        </div>
+        <% }); %>
     </div>
-<% }); %>
+
+</div>
 
 <% include partials/footer %>
