@@ -1,4 +1,11 @@
-<h1>This is the recipes page!</h1>
+<% include partials/header %>
+
+<div class="container">
+    <header class="jumbotron">
+        <h1>This is the recipes page!</h1>
+    </header>
+</div>
+<a href="/recipes/new">Enter new recipe</a>
 
 <% recipes.forEach(function(recipe){ %>
     <div>
@@ -6,3 +13,5 @@
         <img src="<%= recipe.image %>">
     </div>
 <% }); %>
+
+<% include partials/footer %>

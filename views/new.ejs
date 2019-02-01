@@ -1,0 +1,13 @@
+<% include partials/header %>
+
+<h1>Enter a new recipe</h1>
+
+<form action="/recipes" method="POST">
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="image" placeholder="image url">
+    <button>Submit!</button>
+</form>
+
+<a href="/recipes">Go back to recipes</a>
+
+<% include partials/footer %>
