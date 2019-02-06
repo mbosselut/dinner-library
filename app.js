@@ -2,6 +2,16 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 
+//mongodb test
+const mongoose = require('mongoose'); // requiring our package
+
+mongoose.connect('mongodb://localhost/test_2'); // establishing the connection
+mongoose.connection
+.once('open', () => console.log('Connection established'))
+.on('error', (error) => {
+    console.log('Warning : ' + error); 
+});
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 //adds .ejs to all route names
