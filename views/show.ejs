@@ -6,4 +6,12 @@
 
 <p><%= recipe.description %></p>
 
+<% recipe.comments.forEach(function(){%>
+    <p>
+        <strong>
+        <%= comment.author %> - <%= comment.text %>
+        </strong>
+    </p>
+<% })%>
+
 <% include partials/footer %>

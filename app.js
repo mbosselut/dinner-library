@@ -1,6 +1,9 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+var Recipe = require("./models/recipe");
+var seedDB = require("./seeds");
+
 
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
@@ -16,45 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //adds .ejs to all route names
 app.set("view engine", "ejs");
-
-//SCHEMA SETUP
-var recipeSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-//creates model from Schema to add methods
-var Recipe = mongoose.model("Recipe", recipeSchema);
-
-// Recipe.create(
-//     {
-//         name: "Asian beef ramen noodle",
-//         image: "https://www.recipetineats.com/wp-content/uploads/2018/12/Asian-Beef-Noodles_7-650x813.jpg",
-//         description: "This is very quick and quite tasty, but high in calories"
-//     }, function(err, recipe){
-//     if(err){
-//         console.log(err);
-//     } else {
-//         console.log("Newly created recipe: ");
-//         console.log(recipe);
-//     }
-// });
-
-// var recipes = [
-//     {
-//         name: "Pad Thai",
-//         image: "https://www.recipetineats.com/wp-content/uploads/2018/05/Chicken-Pad-Thai_9-landscape-650x501.jpg"
-//     },
-//     {
-//         name: "Asian beef ramen noodle",
-//         image: "https://www.recipetineats.com/wp-content/uploads/2018/12/Asian-Beef-Noodles_7-650x813.jpg"
-//     },
-//     {
-//         name: "Cheese muffins",
-//         image: "https://www.recipetineats.com/wp-content/uploads/2016/05/Cheesy-Savoury-Muffins_1a.jpg"
-//     }
-// ]
+seedDB();
 
 app.get("/", function(req,res){
     res.render("landing");
@@ -98,7 +63,7 @@ app.get("/recipes/new", function(req, res){
 //SHOW ROUTE - Show info about one recipe
 app.get("/recipes/:id", function(req, res){
     //find the recipe w/ provided ID
-    Recipe.findById(req.params.id, function(err, foundRecipe){
+    Recipe.findById(req.params.id).populate("comments").exec(function(err, foundRecipe){
         if(err){
             console.log(err);
         } else {
