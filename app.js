@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
 
-mongoose.connect('mongodb://localhost/dinner-library-test'); // establishing the connection
+mongoose.connect('mongodb://localhost:27017/dinner-library-test', {useNewUrlParser: true}); // establishing the connection
 mongoose.connection
 .once('open', () => console.log('Connection established'))
 .on('error', (error) => {
@@ -20,7 +20,8 @@ app.set("view engine", "ejs");
 //SCHEMA SETUP
 var recipeSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 });
 
 //creates model from Schema to add methods
@@ -29,7 +30,8 @@ var Recipe = mongoose.model("Recipe", recipeSchema);
 // Recipe.create(
 //     {
 //         name: "Asian beef ramen noodle",
-//         image: "https://www.recipetineats.com/wp-content/uploads/2018/12/Asian-Beef-Noodles_7-650x813.jpg"
+//         image: "https://www.recipetineats.com/wp-content/uploads/2018/12/Asian-Beef-Noodles_7-650x813.jpg",
+//         description: "This is very quick and quite tasty, but high in calories"
 //     }, function(err, recipe){
 //     if(err){
 //         console.log(err);
@@ -58,23 +60,26 @@ app.get("/", function(req,res){
     res.render("landing");
 });
 
+//INDEX ROUTE - Show all recipes
 app.get("/recipes", function(req,res){
     //Get all recipes from DB
     Recipe.find({}, function(err, allRecipes){
         if(err){
             console.log(err);
         } else {
-            res.render("recipes", {recipes:allRecipes});
+            res.render("index", {recipes:allRecipes});
         }
     });
     // res.render("recipes", {recipes:recipes});
 });
 
+//CREATE ROUTE - Post new recipe to DB
 app.post("/recipes", function(req, res){
     //get data from form and add to recipes array
     var name = req.body.name;
     var image = req.body.image;
-    var newRecipe = {name: name, image: image};
+    var description = req.body.description;
+    var newRecipe = {name: name, image: image, description: description};
     //Create a new recipe and save to DB
     Recipe.create(newRecipe, function(err, newlyCreated){
         if(err){
@@ -85,8 +90,21 @@ app.post("/recipes", function(req, res){
     })
 });
 
+//NEW ROUTE - Show form to create new recipe
 app.get("/recipes/new", function(req, res){
     res.render("new.ejs");
+});
+
+//SHOW ROUTE - Show info about one recipe
+app.get("/recipes/:id", function(req, res){
+    //find the recipe w/ provided ID
+    Recipe.findById(req.params.id, function(err, foundRecipe){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("show", {recipe: foundRecipe})
+        }
+    });
 });
 
 app.listen(3000, process.env.IP, function(){
