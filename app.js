@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var Recipe = require("./models/recipe");
 var seedDB = require("./seeds");
-
+var Comment = require("./models/comment");
 
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
@@ -32,7 +32,7 @@ app.get("/recipes", function(req,res){
         if(err){
             console.log(err);
         } else {
-            res.render("index", {recipes:allRecipes});
+            res.render("recipes/index", {recipes:allRecipes});
         }
     });
     // res.render("recipes", {recipes:recipes});
@@ -57,7 +57,7 @@ app.post("/recipes", function(req, res){
 
 //NEW ROUTE - Show form to create new recipe
 app.get("/recipes/new", function(req, res){
-    res.render("new.ejs");
+    res.render("recipes/new");
 });
 
 //SHOW ROUTE - Show info about one recipe
@@ -67,10 +67,45 @@ app.get("/recipes/:id", function(req, res){
         if(err){
             console.log(err);
         } else {
-            res.render("show", {recipe: foundRecipe})
+            res.render("recipes/show", {recipe: foundRecipe})
         }
     });
 });
+
+// ==================================
+// COMMENTS ROUTES
+// ==================================
+app.get("/recipes/:id/comments/new", function(req, res){
+    //find recipe by id
+    Recipe.findById(req.params.id, function(err, recipe){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("comments/new", {recipe: recipe});
+        }
+    })
+});
+
+app.post("/recipes/:id/comments", function(req, res){
+    //lookup recipe using id
+    Recipe.findById(req.params.id, function(err, recipe){
+        if(err){
+            console.log(err);
+            res.redirect("/recipes");
+        } else {
+            //thanks to formatting comment[text] in the 'new' route, req.body.comment already includes text and author
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                } else {
+                    recipe.comments.push(comment);
+                    recipe.save();
+                    res.redirect("/recipes/" + recipe._id);
+                }
+            });
+        }
+    });
+})
 
 app.listen(3000, process.env.IP, function(){
     console.log("The Dinner Library server has started");
