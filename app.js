@@ -4,6 +4,9 @@ var bodyParser = require("body-parser");
 var Recipe = require("./models/recipe");
 var seedDB = require("./seeds");
 var Comment = require("./models/comment");
+var passport = require("passport");
+var LocalStrategy = require("passport-local");
+var User = require("/.models/user");
 
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
@@ -19,6 +22,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //adds .ejs to all route names
 app.set("view engine", "ejs");
+//serving the public directory
+app.use(express.static(__dirname + "/public"));
+
 seedDB();
 
 app.get("/", function(req,res){

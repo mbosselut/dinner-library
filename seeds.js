@@ -6,17 +6,17 @@ var data = [
     {
         name: "Pad Thai",
         image: "https://www.recipetineats.com/wp-content/uploads/2018/05/Chicken-Pad-Thai_9-landscape-650x501.jpg",
-        description: "My new favorite recipe"
+        description: "Cupcake ipsum dolor. Sit amet chupa chups. Lollipop wafer liquorice gummies sweet roll gummies brownie sweet roll gummies. Icing biscuit wafer halvah chocolate. Macaroon toffee dragée muffin cotton candy pastry. Croissant chupa chups cookie chocolate bar. Pastry topping soufflé wafer oat cake. Soufflé donut danish dragée lemon drops. Macaroon cake chocolate bar cotton candy tootsie roll cotton candy toffee gummies. Macaroon gingerbread cookie cake marzipan tiramisu."
     },
     {
         name: "Asian beef ramen noodle",
         image: "https://www.recipetineats.com/wp-content/uploads/2018/12/Asian-Beef-Noodles_7-650x813.jpg",
-        description: "Quick and tasty, but high in calories"
+        description: "Cupcake ipsum dolor. Sit amet chupa chups. Lollipop wafer liquorice gummies sweet roll gummies brownie sweet roll gummies. Icing biscuit wafer halvah chocolate. Macaroon toffee dragée muffin cotton candy pastry. Croissant chupa chups cookie chocolate bar. Pastry topping soufflé wafer oat cake. Soufflé donut danish dragée lemon drops. Macaroon cake chocolate bar cotton candy tootsie roll cotton candy toffee gummies. Macaroon gingerbread cookie cake marzipan tiramisu."
     },
     {
         name: "Cheese muffins",
         image: "https://www.recipetineats.com/wp-content/uploads/2016/05/Cheesy-Savoury-Muffins_1a.jpg",
-        description: "Good party food!"
+        description: "Cupcake ipsum dolor sit. Amet marzipan sesame snaps pie tiramisu. Pastry sugar plum cupcake jelly apple pie cake danish chupa chups halvah. Biscuit brownie candy canes topping candy canes tart. Tootsie roll lollipop bear claw tiramisu wafer jelly-o icing cheesecake soufflé. Sweet roll ice cream chocolate bar bonbon brownie toffee. Candy canes dragée jelly muffin powder chupa chups powder marzipan chocolate bar."
     }
 ]
 
