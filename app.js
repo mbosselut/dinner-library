@@ -6,7 +6,7 @@ var seedDB = require("./seeds");
 var Comment = require("./models/comment");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
-var User = require("/.models/user");
+var User = require("./models/user");
 
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
@@ -26,6 +26,19 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 seedDB();
+
+//PASSPORT CONFIGURATION
+app.use(require("express-session")({
+    secret: "Once again; Rusty is the cutest",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get("/", function(req,res){
     res.render("landing");
@@ -112,6 +125,34 @@ app.post("/recipes/:id/comments", function(req, res){
         }
     });
 })
+
+// ========================
+// AUTH ROUTES
+// ========================
+
+//show register form
+app.get("/register", function(req, res){
+    res.render("register");
+});
+
+//called when form under /register.ejs is submitted, handles signup logic
+app.post("/register", function(req, res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render("register");
+        }
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/recipes");
+        });
+    });
+});
+
+//show login form
+app.get("/login", function(req, res){
+    res.render("login");
+});
 
 app.listen(3000, process.env.IP, function(){
     console.log("The Dinner Library server has started");
