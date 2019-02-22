@@ -6,6 +6,7 @@ var express         = require("express"),
     Comment         = require("./models/comment"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
+    methodOverride  = require("method-override"),
     User            = require("./models/user");
 
 //Requiring routes
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 //serving the public directory
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 // seed database seedDB();
 

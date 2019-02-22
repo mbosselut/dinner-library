@@ -54,6 +54,41 @@ router.get("/:id", function(req, res){
     });
 });
 
+//EDIT ROUTE - showing edit form
+router.get("/:id/edit", function(req, res){
+    Recipe.findById(req.params.id, function(err, foundRecipe){
+        if(err) {
+            res.redirect("/recipes");
+        } else {
+            res.render("recipes/edit", {recipe: foundRecipe});
+        }
+    });    
+})
+
+//UPDATE ROUTE - updating recipe
+router.put("/:id", function(req, res){
+    //find and update correct recipe
+    Recipe.findByIdAndUpdate(req.params.id, req.body.recipe, function(err, updatedRecipe){
+        if(err){
+            res.redirect("/recipes");
+        } else {
+            res.redirect("/recipes/" + req.params.id);
+        }
+    })
+    //redirect somewhere
+});
+
+//DESTROY RECIPE ROUTE
+router.delete("/:id", function(req, res){
+    Recipe.findByIdAndDelete(req.params.id, function(err){
+        if(err){
+            res.redirect("/recipes");
+        } else{
+            res.redirect("/recipes");
+        }
+    })
+});
+
 //middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
