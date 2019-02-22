@@ -23,41 +23,41 @@ var data = [
 function seedDB(){
     //Remove all recipes
     Recipe.remove({}, function(err){
-         if(err){
-             console.log(err);
-         }
-         console.log("removed recipes!");
-         Comment.remove({}, function(err) {
-             if(err){
-                 console.log(err);
-             }
-             console.log("removed comments!");
-              //add a few recipes
-             data.forEach(function(seed){
-                 Recipe.create(seed, function(err, recipe){
-                     if(err){
-                         console.log(err)
-                     } else {
-                         console.log("added a recipe");
-                         //create a comment
-                         Comment.create(
-                             {
-                                 text: "This place is great, but I wish there was internet",
-                                 author: "Homer"
-                             }, function(err, comment){
-                                 if(err){
-                                     console.log("OOOOOOOOOOOOOOOOOOOOOOOPS");
-                                     console.log(err);
-                                 } else {
-                                     recipe.comments.push(comment);
-                                     recipe.save();
-                                     console.log("Created new comment");
-                                 }
-                             });
-                     }
-                 });
-             });
-         });
+        // if(err){
+        //      console.log(err);
+        //  }
+        //  console.log("removed recipes!");
+        //  Comment.remove({}, function(err) {
+        //      if(err){
+        //          console.log(err);
+        //      }
+        //      console.log("removed comments!");
+        //       //add a few recipes
+        //      data.forEach(function(seed){
+        //          Recipe.create(seed, function(err, recipe){
+        //              if(err){
+        //                  console.log(err)
+        //              } else {
+        //                  console.log("added a recipe");
+        //                  //create a comment
+        //                  Comment.create(
+        //                      {
+        //                          text: "This place is great, but I wish there was internet",
+        //                          author: "Homer"
+        //                      }, function(err, comment){
+        //                          if(err){
+        //                              console.log("OOOOOOOOOOOOOOOOOOOOOOOPS");
+        //                              console.log(err);
+        //                          } else {
+        //                              recipe.comments.push(comment);
+        //                              recipe.save();
+        //                              console.log("Created new comment");
+        //                          }
+        //                      });
+        //              }
+        //          });
+        //      });
+        //  });
      }); 
      //add a few comments
  }

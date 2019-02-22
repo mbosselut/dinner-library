@@ -30,7 +30,7 @@ app.set("view engine", "ejs");
 //serving the public directory
 app.use(express.static(__dirname + "/public"));
 
-seedDB();
+// seed database seedDB();
 
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
