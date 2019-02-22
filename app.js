@@ -1,12 +1,12 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var Recipe = require("./models/recipe");
-var seedDB = require("./seeds");
-var Comment = require("./models/comment");
-var passport = require("passport");
-var LocalStrategy = require("passport-local");
-var User = require("./models/user");
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    Recipe          = require("./models/recipe"),
+    seedDB          = require("./seeds"),
+    Comment         = require("./models/comment"),
+    passport        = require("passport"),
+    LocalStrategy   = require("passport-local"),
+    User            = require("./models/user");
 
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
@@ -39,6 +39,13 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+//adding middleware to avoid passing currentUser:req.user manually in each route
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    //moving on to the next code
+    next();
+});
 
 app.get("/", function(req,res){
     res.render("landing");
@@ -94,7 +101,7 @@ app.get("/recipes/:id", function(req, res){
 // ==================================
 // COMMENTS ROUTES
 // ==================================
-app.get("/recipes/:id/comments/new", function(req, res){
+app.get("/recipes/:id/comments/new", isLoggedIn, function(req, res){
     //find recipe by id
     Recipe.findById(req.params.id, function(err, recipe){
         if(err){
@@ -105,7 +112,7 @@ app.get("/recipes/:id/comments/new", function(req, res){
     })
 });
 
-app.post("/recipes/:id/comments", function(req, res){
+app.post("/recipes/:id/comments", isLoggedIn, function(req, res){
     //lookup recipe using id
     Recipe.findById(req.params.id, function(err, recipe){
         if(err){
@@ -153,6 +160,29 @@ app.post("/register", function(req, res){
 app.get("/login", function(req, res){
     res.render("login");
 });
+
+//handling login logic : app.post('login', middleware, callback)
+app.post("/login", passport.authenticate("local", 
+    {
+        successRedirect: "/recipes",
+        failureRedirect: "/login"
+    }),
+    function(req, res){
+    
+});
+
+// logout route
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/recipes");
+});
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+};
 
 app.listen(3000, process.env.IP, function(){
     console.log("The Dinner Library server has started");
