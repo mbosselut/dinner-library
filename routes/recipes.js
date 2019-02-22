@@ -16,24 +16,29 @@ router.get("/", function(req,res){
 });
 
 //CREATE ROUTE - Post new recipe to DB
-router.post("/", function(req, res){
+router.post("/", isLoggedIn, function(req, res){
     //get data from form and add to recipes array
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description;
-    var newRecipe = {name: name, image: image, description: description};
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    var newRecipe = {name: name, image: image, description: description, author: author};
     //Create a new recipe and save to DB
     Recipe.create(newRecipe, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
+            console.log(newRecipe);
             res.redirect("/recipes");
         }
     })
 });
 
 //NEW ROUTE - Show form to create new recipe
-router.get("/new", function(req, res){
+router.get("/new", isLoggedIn, function(req, res){
     res.render("recipes/new");
 });
 
@@ -48,6 +53,14 @@ router.get("/:id", function(req, res){
         }
     });
 });
+
+//middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+};
 
 //exports from this file
 module.exports = router;
