@@ -1,6 +1,7 @@
 var express = require("express");
 var router  = express.Router();
 var Recipe  = require("../models/recipe");
+var Comment = require("../models/comment");
 
 //INDEX ROUTE - Show all recipes
 router.get("/", function(req,res){
@@ -80,12 +81,20 @@ router.put("/:id", function(req, res){
 
 //DESTROY RECIPE ROUTE
 router.delete("/:id", function(req, res){
-    Recipe.findByIdAndDelete(req.params.id, function(err){
-        if(err){
-            res.redirect("/recipes");
-        } else{
-            res.redirect("/recipes");
-        }
+    Recipe.findById(req.params.id, function(err, recipe){
+        Comment.remove({
+            "_id": {
+                $in: recipe.comments
+            } 
+        }, function(err){
+            if(err){
+                console.log("here's your error " + err);
+            } else {
+                recipe.remove();
+                res.redirect("/recipes");
+            }
+        })
+
     })
 });
 
