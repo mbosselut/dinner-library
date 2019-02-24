@@ -57,7 +57,7 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 //appends "/recipes" in front of all routes in routes/recipes.js
 app.use("/recipes", recipeRoutes);
-app.use(commentRoutes);
+app.use("/recipes/:id/comments", commentRoutes);
 
 app.listen(3000, process.env.IP, function(){
     console.log("The Dinner Library server has started");

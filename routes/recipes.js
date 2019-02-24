@@ -2,6 +2,8 @@ var express = require("express");
 var router  = express.Router();
 var Recipe  = require("../models/recipe");
 var Comment = require("../models/comment");
+//if you require a directory and no file, it automatically requires 'index.js'
+var middleware = require("../middleware");
 
 //INDEX ROUTE - Show all recipes
 router.get("/", function(req,res){
@@ -17,7 +19,7 @@ router.get("/", function(req,res){
 });
 
 //CREATE ROUTE - Post new recipe to DB
-router.post("/", isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
     //get data from form and add to recipes array
     var name = req.body.name;
     var image = req.body.image;
@@ -39,7 +41,7 @@ router.post("/", isLoggedIn, function(req, res){
 });
 
 //NEW ROUTE - Show form to create new recipe
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
     res.render("recipes/new");
 });
 
@@ -56,18 +58,14 @@ router.get("/:id", function(req, res){
 });
 
 //EDIT ROUTE - showing edit form
-router.get("/:id/edit", function(req, res){
+router.get("/:id/edit", middleware.checkRecipeOwnership, function(req, res){
     Recipe.findById(req.params.id, function(err, foundRecipe){
-        if(err) {
-            res.redirect("/recipes");
-        } else {
-            res.render("recipes/edit", {recipe: foundRecipe});
-        }
-    });    
-})
+        res.render("recipes/edit", {recipe: foundRecipe});
+    });
+});
 
 //UPDATE ROUTE - updating recipe
-router.put("/:id", function(req, res){
+router.put("/:id", middleware.checkRecipeOwnership, function(req, res){
     //find and update correct recipe
     Recipe.findByIdAndUpdate(req.params.id, req.body.recipe, function(err, updatedRecipe){
         if(err){
@@ -80,7 +78,7 @@ router.put("/:id", function(req, res){
 });
 
 //DESTROY RECIPE ROUTE
-router.delete("/:id", function(req, res){
+router.delete("/:id", middleware.checkRecipeOwnership, function(req, res){
     Recipe.findById(req.params.id, function(err, recipe){
         Comment.remove({
             "_id": {
@@ -98,13 +96,26 @@ router.delete("/:id", function(req, res){
     })
 });
 
-//middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-};
+
+// function checkRecipeOwnership(req, res, next){
+//     if(req.isAuthenticated()){
+//         Recipe.findById(req.params.id, function(err, foundRecipe){
+//             if(err) {
+//                 res.redirect("/back");
+//             } else {
+//                 //does user own the recipe? using mongoose method to compare both, because one is an object and the other a string
+//                 if(foundRecipe.author.id.equals(req.user._id)){
+//                     next();
+//                 } else {
+//                     res.redirect("back");
+//                 }
+//             }
+//         });    
+//     } else {
+//         //redirects to previous page
+//         res.redirect("back");
+//     }
+// };
 
 //exports from this file
 module.exports = router;
