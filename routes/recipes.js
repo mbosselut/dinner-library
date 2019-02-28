@@ -58,8 +58,9 @@ router.get("/:id", function(req, res){
 });
 
 //EDIT ROUTE - showing edit form
-router.get("/:id/edit", middleware.checkRecipeOwnership, function(req, res){
+router.get("/:id/edit", middleware.isLoggedIn, middleware.checkRecipeOwnership, function(req, res){
     Recipe.findById(req.params.id, function(err, foundRecipe){
+        req.flash("error", "Recipe not found");
         res.render("recipes/edit", {recipe: foundRecipe});
     });
 });

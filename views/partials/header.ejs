@@ -26,4 +26,14 @@
                 </div>
             </div>
         </nav>
-                
+
+    <div class="container">
+        <!-- error isnt undefined cause it's an empty array by default, you need to check length to confirm existence -->
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert"><%= error %></div>
+        <% } %>
+        <% if (success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert"><%= success %></div>
+        <% } %>
+    </div>
+    

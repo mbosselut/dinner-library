@@ -1,6 +1,7 @@
 var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
+    flash           = require("connect-flash");
     Recipe          = require("./models/recipe"),
     seedDB          = require("./seeds"),
     Comment         = require("./models/comment"),
@@ -31,7 +32,7 @@ app.set("view engine", "ejs");
 //serving the public directory
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
-
+app.use(flash());
 // seed database seedDB();
 
 //PASSPORT CONFIGURATION
@@ -50,6 +51,8 @@ passport.deserializeUser(User.deserializeUser());
 //adding middleware to avoid passing currentUser:req.user manually in each route
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     //moving on to the next code
     next();
 });

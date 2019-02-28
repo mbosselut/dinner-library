@@ -30,6 +30,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             //thanks to formatting comment[text] in the 'new' route, req.body.comment already includes text and author
             Comment.create(req.body.comment, function(err, comment){
                 if(err){
+                    req.flash("error", "Something went wrong");
                     console.log(err);
                 } else {
                     //add  username and id to comment
@@ -39,7 +40,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
                     //save comment
                     recipe.comments.push(comment);
                     recipe.save();
-                    console.log(comment);
+                    req.flash("success", "Added new comment");
                     res.redirect("/recipes/" + recipe._id);
                 }
             });
@@ -48,7 +49,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 })
 
 //COMMENT EDIT ROUTE
-router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
+router.get("/:comment_id/edit", middleware.isLoggedIn, middleware.checkCommentOwnership, function(req, res){
     Comment.findById(req.params.comment_id, function(err, foundComment){
         if(err){
             res.redirect("back");
@@ -77,6 +78,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
         if(err){
             res.redirect("back");
         } else {
+            req.flash("success", "Comment deleted");
             res.redirect("/recipes/" + req.params.id);
         }
     })
@@ -89,25 +91,5 @@ function isLoggedIn(req, res, next){
     }
     res.redirect("/login");
 };
-
-// function checkCommentOwnership(req, res, next){
-//     if(req.isAuthenticated()){
-//         Comment.findById(req.params.comment_id, function(err, foundComment){
-//             if(err) {
-//                 res.redirect("/back");
-//             } else {
-//                 //does user own the comment? using mongoose method to compare both, because one is an object and the other a string
-//                 if(foundComment.author.id.equals(req.user._id)){
-//                     next();
-//                 } else {
-//                     res.redirect("back");
-//                 }
-//             }
-//         });    
-//     } else {
-//         //redirects to previous page
-//         res.redirect("back");
-//     }
-// };
 
 module.exports = router;
