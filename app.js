@@ -62,6 +62,6 @@ app.use(indexRoutes);
 app.use("/recipes", recipeRoutes);
 app.use("/recipes/:id/comments", commentRoutes);
 
-app.listen(3000, process.env.IP, function(){
+app.listen(process.env.PORT || 5000, process.env.IP, function(){
     console.log("The Dinner Library server has started");
 });
