@@ -18,7 +18,10 @@ var recipeRoutes    = require("./routes/recipes"),
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
 
-mongoose.connect('mongodb+srv://manonb:manonb@cluster0-nh8iu.mongodb.net/test?retryWrites=true', {useNewUrlParser: true}); // establishing the connection
+console.log(process.env.DATABASEURL);
+mongoose.connect('mongodb://localhost:27017/dinner-library-test', {useNewUrlParser: true}); // establishing the connection
+//mongoose.connect('mongodb+srv://manonb:manonb@cluster0-nh8iu.mongodb.net/test?retryWrites=true', {useNewUrlParser: true}); // establishing the connection
+
 mongoose.connection
 .once('open', () => console.log('Connection established'))
 .on('error', (error) => {
@@ -62,6 +65,6 @@ app.use(indexRoutes);
 app.use("/recipes", recipeRoutes);
 app.use("/recipes/:id/comments", commentRoutes);
 
-app.listen(process.env.PORT || 5000, process.env.IP, function(){
+app.listen(process.env.PORT || 3000, process.env.IP, function(){
     console.log("The Dinner Library server has started");
 });
