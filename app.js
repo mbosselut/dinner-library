@@ -18,7 +18,7 @@ var recipeRoutes    = require("./routes/recipes"),
 //mongodb test
 const mongoose = require('mongoose'); // requiring our package
 
-mongoose.connect('mongodb://localhost:27017/dinner-library-test', {useNewUrlParser: true}); // establishing the connection
+mongoose.connect('mongodb+srv://manonb:PouetCata07m@cluster0-nh8iu.mongodb.net/test?retryWrites=true', {useNewUrlParser: true}); // establishing the connection
 mongoose.connection
 .once('open', () => console.log('Connection established'))
 .on('error', (error) => {
