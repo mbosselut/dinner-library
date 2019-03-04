@@ -97,26 +97,5 @@ router.delete("/:id", middleware.checkRecipeOwnership, function(req, res){
     })
 });
 
-
-// function checkRecipeOwnership(req, res, next){
-//     if(req.isAuthenticated()){
-//         Recipe.findById(req.params.id, function(err, foundRecipe){
-//             if(err) {
-//                 res.redirect("/back");
-//             } else {
-//                 //does user own the recipe? using mongoose method to compare both, because one is an object and the other a string
-//                 if(foundRecipe.author.id.equals(req.user._id)){
-//                     next();
-//                 } else {
-//                     res.redirect("back");
-//                 }
-//             }
-//         });    
-//     } else {
-//         //redirects to previous page
-//         res.redirect("back");
-//     }
-// };
-
 //exports from this file
 module.exports = router;

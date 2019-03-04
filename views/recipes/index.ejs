@@ -1,36 +1,46 @@
 <% include ../partials/header %>
-
-<div class="container">
-    <header class="jumbotron">
-        <div class="container">
-            <h1>Aad & Manon's recipe library</h1>
-            <p>Favorite recipes and new ones to experiment with !</p>
-            <p>
-                <a class="btn btn-primary btn-lg" href="/recipes/new">Enter new recipe</a>
-            </p>
-        </div>
-    </header>
-
-
-    <div class="row text-centerk " style="display:flex; flex-wrap:wrap;">
-        <div class="col-lg-12">
-            <h3>Our favorite recipes</h3>
-        </div>
-        <% recipes.forEach(function(recipe){ %>
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail">
-                <img src="<%= recipe.image %>">
-                <div class="caption">
-                    <h4><%= recipe.name %></h4>
+<div id="full-content">
+    <div class="row">
+        <div id="page-title" class="container col-md-9">
+            <header class="jumbotron">
+                <div class="container">
+                    <h1>Aad & Manon's recipe library</h1>
+                    <p>Favorite recipes and new ones to experiment with !</p>
+                    <p>
+                        <a class="btn btn-primary btn-lg" href="/recipes/new">Enter new recipe</a>
+                    </p>
                 </div>
-                <p>
-                    <a href="/recipes/<%= recipe._id %>" class="btn btn-primary">More details</a>
-                </p>
-            </div>
+            </header>
         </div>
-        <% }); %>
     </div>
 
+    <div class="row main-content">
+        <div id="recipe-library" class="text-left col-md-9" style="display:inline; flex-wrap:wrap;">
+            <div>
+                <h3>Our favorite recipes</h3>
+                <% recipes.forEach(function(recipe){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <img src="<%= recipe.image %>">
+                        <div class="caption">
+                            <h4><%= recipe.name %></h4>
+                        </div>
+                        <p>
+                            <a href="/recipes/<%= recipe._id %>" class="btn btn-primary">More details</a>
+                        </p>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <div id="link-list" class="col-md-3">
+            <p class="lead">Favorite recipe creators</p>
+            <div class"list-group">
+                <li class="list-group-item">Link 1</li>
+                <li class="list-group-item">Link 2</li>
+                <li class="list-group-item">Link 3</li>
+            </div>
+        </div>
+    </div>
 </div>
-
 <% include ../partials/footer %>

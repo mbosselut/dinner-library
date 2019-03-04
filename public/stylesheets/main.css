@@ -1,10 +1,26 @@
 /*selects all images within the thumbnail class*/
-.thumbnail img {
-    width: 100%;
+#recipe-library img {
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    padding-top: 15px;
+}
+
+.thumbnail .caption {
+    padding: 0px;
+}
+
+#full-content {
+    padding-left: 20px;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
 }
 
 .thumbnail {
     padding: 0;
+    text-align:center;
 }
 
 .thumbnail .caption-full {
@@ -13,4 +29,8 @@
 
 .delete-form {
     display:inline;
+}
+
+#link-list {
+    padding-right: 30px;
 }

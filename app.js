@@ -19,8 +19,9 @@ var recipeRoutes    = require("./routes/recipes"),
 const mongoose = require('mongoose'); // requiring our package
 
 console.log(process.env.DATABASEURL);
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/dinner-library-test";
+mongoose.connect(url);
 
-mongoose.connect(process.env.DATABASEURL);
 //mongoose.connect('mongodb://localhost:27017/dinner-library-test', {useNewUrlParser: true}); // establishing the connection
 //mongoose.connect('mongodb+srv://manonb:manonb@cluster0-nh8iu.mongodb.net/test?retryWrites=true', {useNewUrlParser: true}); // establishing the connection
 
