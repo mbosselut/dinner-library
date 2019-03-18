@@ -1,9 +1,37 @@
-/*selects all images within the thumbnail class*/
+.try-center {
+    display: inline-block;
+    float: none;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+    vertical-align: top;
+}
+
 #recipe-library img {
     width: 200px;
     height: 200px;
     min-width: 200px;
     padding-top: 15px;
+}
+
+.sidebar {
+    /* height: 100%; Full-height: remove this if you want "auto" height */
+    /* width: 200px; Set the width of the sidebar */
+    /* position: fixed; Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    /* top: 0; Stay at the top */
+    /* right: 0; */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
 }
 
 .thumbnail .caption {
@@ -33,4 +61,39 @@
 
 #link-list {
     padding-right: 30px;
+}
+
+#ingredients-list {
+    list-style-type: disc;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+    list-style-position: inside;
+}
+
+#recipe-overview {
+    display: flex;
+}
+
+.recipe-overview-cell {
+    float: left;
+    width: 33%;
+    font-size: .9em;
+    clear: none;
+    padding: 5px;
+    text-align: center;
+    font-style: normal;
+    letter-spacing: 1px;
+    display: block;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.recipe-middle-cell {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+.main-content {
+    text-align: center;
 }

@@ -1,64 +1,89 @@
 <% include ../partials/header %>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <p class="lead">Dinner library</p>
-            <div class"list-group">
-                <li class="list-group-item active">Info 1</li>
-                <li class="list-group-item">Info 2</li>
-                <li class="list-group-item">Info 3</li>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="thumbnail">
+<div class="">
+<div class="row row-centered">
+    <div class="container well main-content col-sm-6 col-centered">
+        <div class="">
+            <div class="col-md-6 thumbnail">
                 <img class="img-responsive" src="<%= recipe.image %> ">
-                <div class="caption-full">
-                    <h4 class="pull-right">Ready in 30min</h4>
-                    <h4><a><%= recipe.name %></a></h4>
-                    <p><%= recipe.description %></p>
-                    <p>
-                        <em>Submitted by <%= recipe.author.username %></em>
-                    </p>
-                    <% if(currentUser && recipe.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-warning" href="/recipes/<%= recipe._id%>/edit">Edit</a>
-                        <form class="delete-form" action="/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
-                    <% } %>
-                </div>
             </div>
-            <div class="well">
-                <div class="text-right">
-                    <a class="btn btn-success" href="/recipes/<%= recipe._id %>/comments/new">Add new comment</a>
-                </div>
-                <hr>
-                <% recipe.comments.forEach(function(comment){%>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong><%= comment.author.username %></strong>
-                            <span class="pull-right">10 days ago</span>
-                            <p>
-                                <%= comment.text %>
-                            </p>
-                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-                                <a  class="btn btn-xs btn-warning" 
-                                    href="/recipes/<%=recipe._id%>/comments/<%=comment._id%>/edit">
-                                    Edit
-                                </a>
-                                <form class="delete-form" action="/recipes/<%=recipe._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                </form>
-                            <% }; %>
-                        </div>
+            <div class="caption-full col-md-6">
+                <h2><%= recipe.name %></h2>
+                <h6>A recipe by...</h6>
+                <div id="recipe-overview">
+                    <div class="recipe-overview-cell">
+                        <span>Category :</span>
+                        <span>Main</span>
                     </div>
-                <% })%>
+                    <div class="recipe-overview-cell recipe-middle-cell">
+                        <span>Cooking time :</span>
+                        <span>1 hour</span>
+                    </div>
+                    <div class="recipe-overview-cell">
+                        <span>Calories :</span>
+                        <span>540</span>
+                    </div>
+                </div>
+                <div>
+                    <p>Ingredients :</p>
+                    <ul id="ingredients-list">
+                        <li>3 tbsp olive oil</li>
+                        <li>800g crushed canned tomatoes</li>
+                        <li>400mL Coconut milk</li>
+                        <li>3 tbsp tomato paste</li>
+                        <li>3 cloves garlic</li>
+                        <li>1 cup carrots</li>
+                        <li>3 dried bay leaves</li>
+                        <li>500g dried pappardelle</li>
+                    </ul>
+                </div>
+                <p><%= recipe.description %></p>
+                <% if(currentUser && recipe.author.id.equals(currentUser._id)){ %>
+                <a class="btn btn-warning" href="/recipes/<%= recipe._id%>/edit">Edit</a>
+                <form class="delete-form" action="/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                <% } %>
+                <p>
+                    <em>Submitted by <%= recipe.author.username %></em>
+                </p>
             </div>
         </div>
     </div>
+    <div id="recipe-page-links" class="sidebar col-sm-3 col-centered">
+        <p class="lead">Dinner library</p>
+        <div class"list-group">
+            <li class="list-group-item">Link 1</li>
+            <li class="list-group-item">Link 2</li>
+            <li class="list-group-item">Link 3</li>
+        </div>
+    </div>
 </div>
-
-
+</div>
+<div id="recipe-comments" class="well row">
+    <div class="text-right">
+        <a class="btn btn-success" href="/recipes/<%= recipe._id %>/comments/new">Add new comment</a>
+    </div>
+    <% recipe.comments.forEach(function(comment){%>
+    <div class="row">
+        <div class="col-md-12">
+            <strong><%= comment.author.username %></strong>
+            <span class="pull-right">10 days ago</span>
+            <p>
+                <%= comment.text %>
+            </p>
+            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+            <a class="btn btn-xs btn-warning" href="/recipes/<%=recipe._id%>/comments/<%=comment._id%>/edit">
+                Edit
+            </a>
+            <form class="delete-form" action="/recipes/<%=recipe._id%>/comments/<%=comment._id%>?_method=DELETE"
+                method="POST">
+                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+            </form>
+            <% }; %>
+        </div>
+    </div>
+    <% })%>
+</div>
 
 
 <% include ../partials/footer %>
