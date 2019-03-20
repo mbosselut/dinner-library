@@ -14,6 +14,7 @@ var recipeSchema = new mongoose.Schema({
         },
         username: String
     },
+    cookingTime: String,
     comments: [
         {
            type: mongoose.Schema.Types.ObjectId,

@@ -16,7 +16,7 @@
                     </div>
                     <div class="recipe-overview-cell recipe-middle-cell">
                         <span>Cooking time :</span>
-                        <span>1 hour</span>
+                        <span><%= recipe.cookingTime %></span>
                     </div>
                     <div class="recipe-overview-cell">
                         <span>Calories :</span>
@@ -37,6 +37,7 @@
                     </ul>
                 </div>
                 <p><%= recipe.description %></p>
+                <p><em>Tags: vegetarian, house favorite</em></p>
                 <% if(currentUser && recipe.author.id.equals(currentUser._id)){ %>
                 <a class="btn btn-warning" href="/recipes/<%= recipe._id%>/edit">Edit</a>
                 <form class="delete-form" action="/recipes/<%= recipe._id%>?_method=DELETE" method="POST">

@@ -24,11 +24,12 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description;
+    var cookingTime = req.body.cookingTime;
     var author = {
         id: req.user._id,
         username: req.user.username
     };
-    var newRecipe = {name: name, image: image, description: description, author: author};
+    var newRecipe = {name: name, image: image, description: description, author: author, cookingTime: cookingTime};
     //Create a new recipe and save to DB
     Recipe.create(newRecipe, function(err, newlyCreated){
         if(err){
