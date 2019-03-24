@@ -69,6 +69,7 @@
     -moz-columns: 2;
     columns: 2;
     list-style-position: inside;
+    text-align:left;
 }
 
 #recipe-overview {

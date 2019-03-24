@@ -5,8 +5,14 @@ var mongoose = require("mongoose");
 //SCHEMA SETUP
 var recipeSchema = new mongoose.Schema({
     name: String,
+    url: String,
+    urlAuthor: String,
+    cookingTime: String,
+    calories : Number,
+    category: String,
     image: String,
     description: String,
+    ingredients: String,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -14,11 +20,10 @@ var recipeSchema = new mongoose.Schema({
         },
         username: String
     },
-    cookingTime: String,
     comments: [
         {
-           type: mongoose.Schema.Types.ObjectId,
-           ref: "Comment"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment"
         }
     ]
 });

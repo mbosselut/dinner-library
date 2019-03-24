@@ -26,14 +26,19 @@
                 <div>
                     <p>Ingredients :</p>
                     <ul id="ingredients-list">
-                        <li>3 tbsp olive oil</li>
-                        <li>800g crushed canned tomatoes</li>
-                        <li>400mL Coconut milk</li>
-                        <li>3 tbsp tomato paste</li>
-                        <li>3 cloves garlic</li>
-                        <li>1 cup carrots</li>
-                        <li>3 dried bay leaves</li>
-                        <li>500g dried pappardelle</li>
+                        <% if(recipe.ingredients){%>
+                            <ul>
+                                <% recipe.ingredients.split(",").forEach(function(ingredient){%>
+                                    <li><%= ingredient %></li>
+                                <% }); %>
+                            </ul>  
+                        <% };%>    
+                        <!-- <li>Pasta</li>
+                        <li>Vegetables</li>
+                        <li>Shitload of parmesan</li>
+                        <li>Pasta</li>
+                        <li>Pasta</li>
+                        <li>Pasta</li> -->
                     </ul>
                 </div>
                 <p><%= recipe.description %></p>
