@@ -76,6 +76,16 @@
     display: flex;
 }
 
+.thumbnail img {
+    object-fit: cover;
+}
+
+.full-recipe img{
+    object-fit:cover;
+    width: 500px;
+    height:500px;
+}
+
 .recipe-overview-cell {
     float: left;
     width: 33%;
