@@ -5,9 +5,14 @@ var User = require("../models/user");
 
 //Root route
 router.get("/", function(req,res){
-    res.render("landing");
+    Recipe.find({}, function(err, allRecipes){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("recipes/index", {recipes:allRecipes});
+        }
+    });
 });
-
 
 //show register form
 router.get("/register", function(req, res){
