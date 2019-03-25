@@ -108,3 +108,7 @@
 .main-content {
     text-align: center;
 }
+
+#recipe-overview span {
+    display: block;
+}

@@ -8,11 +8,11 @@
             </div>
             <div class="caption-full col-md-6">
                 <h2><%= recipe.name %></h2>
-                <h6>A recipe by...</h6>
+                <h6>A recipe by <a href="<%= recipe.url%>"><%= recipe.recipeAuthor%></a></h6>
                 <div id="recipe-overview">
                     <div class="recipe-overview-cell">
-                        <span>Category :</span>
-                        <span>Main</span>
+                        <span>Category : </span>
+                        <span><%=recipe.category%></span>
                     </div>
                     <div class="recipe-overview-cell recipe-middle-cell">
                         <span>Cooking time :</span>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="recipe-overview-cell">
                         <span>Calories :</span>
-                        <span>540</span>
+                        <span> <%= recipe.calories%></span>
                     </div>
                 </div>
                 <div>

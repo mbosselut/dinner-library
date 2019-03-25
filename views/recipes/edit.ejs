@@ -9,10 +9,31 @@
                     <input class="form-control" type="text" name="recipe[name]" value="<%= recipe.name%>">
                 </div>
                 <div class="form-group">
+                        <label for="category">Category :</label>
+                        <select name="recipe[category]">
+                                <option value="Starter">Starter</option>
+                                <option value="Main">Main</option>
+                                <option value="Dessert">Dessert</option>
+                                <option value="Side">Side</option>
+                        </select>  
+                </div>
+                <div class="form-group">
+                        <input class="form-control" type="text" name="recipe[url]" value="<%=recipe.url%>">
+                </div>
+                <div class="form-group">
+                        <input class="form-control" type="text" name="recipe[recipeAuthor]" value="<%=recipe.recipeAuthor%>">
+                </div>
+                <div class="form-group">
                     <input class="form-control" type="text" name="recipe[image]" value="<%= recipe.image%>">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="text" name="recipe[cookingTime]" value="<%= recipe.cookingTime%>">
+                </div>
+                <div class="form-group">
+                        <input class="form-control" type="text" name="recipe[calories]" value="<%=recipe.calories%>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="recipe[ingredients]" value="<%=recipe.ingredients%>">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="text" name="recipe[description]" value="<%=recipe.description%>">

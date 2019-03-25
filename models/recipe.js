@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var recipeSchema = new mongoose.Schema({
     name: String,
     url: String,
-    urlAuthor: String,
+    recipeAuthor: String,
     cookingTime: String,
     calories : Number,
     category: String,

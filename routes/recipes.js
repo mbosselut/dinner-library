@@ -22,22 +22,25 @@ router.get("/", function(req,res){
 router.post("/", middleware.isLoggedIn, function(req, res){
     //get data from form and add to recipes array
     var name = req.body.name;
+    var category = req.body.category;
+    var url = req.body.url;
+    var recipeAuthor = req.body.recipeAuthor;
     var image = req.body.image;
-    var description = req.body.description;
     var cookingTime = req.body.cookingTime;
+    var calories = req.body.calories;
     var ingredients = req.body.ingredients;
-    ingredients = ingredients.split(",");
+    // ingredients = ingredients.split(",");
+    var description = req.body.description;
     var author = {
         id: req.user._id,
         username: req.user.username
     };
-    var newRecipe = {name: name, image: image, description: description, author: author, cookingTime: cookingTime, ingredients: ingredients};
+    var newRecipe = {name: name, category: category, url: url, recipeAuthor: recipeAuthor, image: image, cookingTime: cookingTime, calories: calories, description: description, author: author, ingredients: ingredients};
     //Create a new recipe and save to DB
     Recipe.create(newRecipe, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
-            console.log(newRecipe);
             res.redirect("/recipes");
         }
     })
