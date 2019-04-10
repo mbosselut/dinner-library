@@ -1,46 +1,56 @@
 <% include ../partials/header %>
+<h6 id="test-case">This is a test</h6>
+<div class="row main-content">
+        <button id="test-button">Delete 2nd recipe</button>
+</div>
 <div id="full-content">
-    <div class="row">
-        <div id="page-title" class="container col-md-9">
-            <header class="jumbotron">
-                <div class="container">
-                    <h1>Aad & Manon's recipe library</h1>
-                    <p>Favorite recipes and new ones to experiment with !</p>
-                    <p>
-                        <a class="btn btn-primary btn-lg" href="/recipes/new">Enter new recipe</a>
-                    </p>
-                </div>
-            </header>
+    <div class="grid-wrapper">
+        <div class="jumbotron">
+            <h1>Aad & Manon's recipe library</h1>
+            <p>Favorite recipes and new ones to experiment with !</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/recipes/new">Enter new recipe</a>
+            </p>
         </div>
-    </div>
-
-    <div class="row main-content">
-        <div id="recipe-library" class="text-left col-md-9" style="display:inline; flex-wrap:wrap;">
-            <div>
-                <h3>Our favorite recipes</h3>
-                <% recipes.forEach(function(recipe){ %>
-                <div class="col-md-3 col-sm-6">
-                    <div class="thumbnail">
-                        <img src="<%= recipe.image %>">
-                        <div class="caption">
-                            <h4><%= recipe.name %></h4>
-                        </div>
-                        <p>
-                            <a href="/recipes/<%= recipe._id %>" class="btn btn-primary">More details</a>
-                        </p>
-                    </div>
-                </div>
-                <% }); %>
-            </div>
-        </div>
-        <div id="link-list" class="col-md-3">
-            <p class="lead">Favorite recipe creators</p>
-            <div class"list-group">
+        <div id="link-list" class="">
+            <p class="">Favorite recipe creators</p>
+            <div class="list-group">
                 <li class="list-group-item">Link 1</li>
                 <li class="list-group-item">Link 2</li>
                 <li class="list-group-item">Link 3</li>
             </div>
         </div>
+        <div class="recipe-show">
+            <h3>Our favorite recipes</h3>
+            <% recipes.forEach(function(recipe){ %>
+            <div class="recipe-card thumbnail">
+                    <img src="<%= recipe.image %>">
+                    <h4><%= recipe.name %></h4>
+                    <p>
+                        <a href="/recipes/<%= recipe._id %>" class="btn btn-primary">More details</a>
+                    </p>
+            </div>
+            <% }); %>
+        </div>
     </div>
 </div>
+
+<script>
+var testButton = document.getElementById("test-button");
+var recipeList = document.getElementsByClassName("recipe-show");
+var recipeThumbnails = document.getElementsByClassName('recipe-card');
+document.getElementById("test-case").innerHTML = "Hello World!";
+
+
+testButton.addEventListener("click", function(){
+    //checking recipes one by one in reverse order and deleting the non-matching ones
+    for(var i = recipeThumbnails.length - 1; i >= 0; i--){
+        if(recipeThumbnails[i].childNodes[3].textContent.toString().indexOf("Gnocchi") === -1){
+            console.log("Author is: " + recipeThumbnails[i].childNodes[3].innerHTML);
+            recipeThumbnails[i].parentNode.removeChild(recipeThumbnails[i]);  
+        };
+    };
+});
+</script>
+
 <% include ../partials/footer %>
