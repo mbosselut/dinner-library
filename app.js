@@ -3,7 +3,6 @@ var express         = require("express"),
     bodyParser      = require("body-parser"),
     flash           = require("connect-flash");
     Recipe          = require("./models/recipe"),
-    seedDB          = require("./seeds"),
     Comment         = require("./models/comment"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
@@ -40,7 +39,6 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
-// seed database seedDB();
 
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
