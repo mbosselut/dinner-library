@@ -5,6 +5,18 @@ var Comment = require("../models/comment");
 //if you require a directory and no file, it automatically requires 'index.js'
 var middleware = require("../middleware");
 
+
+router.get("/raw", (req, res) => {
+    Recipe.find({}, function(err, allRecipes){
+        if(err){
+            console.log(err);
+        } else {
+            console.log(allRecipes);
+            res.json(allRecipes);
+        }
+    });
+});
+
 //INDEX ROUTE - Show all recipes
 router.get("/", function(req,res){
     //Get all recipes from DB
