@@ -1,3 +1,60 @@
-        <!-- <script type="text/javascript" src="/script.js"></script> -->
+<!-- <script>
+    let recipes;
+    let recipesFilter;
+    fetch('/recipes/raw')
+        .then((response) =>{
+            return response.json();
+        })
+        .then((myJson) => {
+            // console.log(myJson);
+            recipes = myJson;
+            //Examples of filter
+            const recipesFiltered = recipes.filter(r => r.name.toLowerCase().includes("p") > 0); // recipes with a P
+            // console.log(recipesFiltered);
+            const recipesFiltered2 = recipes.filter(r => r.name.toLowerCase().includes("p") && r.cookingTime.includes("45") > 0); // recipes with a P and more than 45 minutes of cooking
+            // console.log(recipesFiltered2);
+            recipesFilter = recipes;
+            // Adding recipes
+            const filteredRecipes = document.getElementById("filteredRecipes");
+            fillRecipesFilter(recipesFilter, filteredRecipes);
+        });
+    function filterEnLive(theInput){
+        // console.log(theInput.target.value);
+        recipesFilter = recipes.filter(r => r.name.toLowerCase().includes(theInput.target.value) > 0);
+        // console.log(recipesFilter);
+        const filteredRecipes = document.getElementById("filteredRecipes");
+        while (filteredRecipes.firstChild) {
+            filteredRecipes.removeChild(filteredRecipes.firstChild);
+        }
+        // Adding recipes
+        fillRecipesFilter(recipesFilter, filteredRecipes);
+    }
+    function fillRecipesFilter(recipesFilter, filteredRecipes){
+        recipesFilter.forEach(recipe => {
+            // console.log(recipe);
+            var recipeNode = document.createElement("p");
+            recipeNode.textContent = recipe.name;
+            filteredRecipes.appendChild(recipeNode);
+        });
+    }
+    window.addEventListener("input", filterEnLive);
+
+    //-------------- BUTTON TEST --------------//
+var testButton = document.getElementById("test-button");
+var recipeList = document.getElementsByClassName("recipe-show");
+var recipeThumbnails = document.getElementsByClassName('recipe-card');
+
+
+testButton.addEventListener("click", function(){
+    //checking recipes one by one in reverse order and deleting the non-matching ones
+    for(var i = recipeThumbnails.length - 1; i >= 0; i--){
+        if(recipeThumbnails[i].childNodes[3].textContent.toString().indexOf("Gnocchi") === -1){
+            // console.log("Author is: " + recipeThumbnails[i].childNodes[3].innerHTML);
+            recipeThumbnails[i].parentNode.removeChild(recipeThumbnails[i]);  
+        };
+    };
+});
+    </script> -->
+
     </body>
 </html>
