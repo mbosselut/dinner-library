@@ -49,6 +49,10 @@
     padding-left: 20px;
 }
 
+.main-content {
+    text-align: center;
+}
+
 .jumbotron {
     padding:20px;
 }
@@ -125,10 +129,6 @@
 .recipe-middle-cell {
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
-}
-
-.main-content {
-    text-align: center;
 }
 
 #recipe-overview span {

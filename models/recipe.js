@@ -13,6 +13,7 @@ var recipeSchema = new mongoose.Schema({
     image: String,
     description: String,
     ingredients: String,
+    tags: String,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

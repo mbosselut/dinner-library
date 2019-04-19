@@ -40,13 +40,14 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var cookingTime = req.body.cookingTime;
     var calories = req.body.calories;
     var ingredients = req.body.ingredients;
+    var tags = req.body.tags;
     // ingredients = ingredients.split(",");
     var description = req.body.description;
     var author = {
         id: req.user._id,
         username: req.user.username
     };
-    var newRecipe = {name: name, category: category, url: url, recipeAuthor: recipeAuthor, image: image, cookingTime: cookingTime, calories: calories, description: description, author: author, ingredients: ingredients};
+    var newRecipe = {name: name, category: category, url: url, recipeAuthor: recipeAuthor, image: image, cookingTime: cookingTime, calories: calories, description: description, author: author, ingredients: ingredients, tags: tags};
     //Create a new recipe and save to DB
     Recipe.create(newRecipe, function(err, newlyCreated){
         if(err){
