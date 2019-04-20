@@ -98,7 +98,7 @@
     margin:10px;;
 }
 
-.recipe-card img {
+#recipe-card {
     object-fit: cover;
     width: 200px;
     height: 200px;

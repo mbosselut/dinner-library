@@ -40,7 +40,7 @@
             <!-- Creates a card for each recipe in DB -->
             <% recipes.forEach(function(recipe){ %>
             <div class="recipe-card thumbnail">
-                    <img src="<%= recipe.image %>">
+                    <a href="/recipes/<%= recipe._id %>"><img id="recipe-card" src="<%= recipe.image %>"></a>
                     <h4><%= recipe.name %></h4>
                     <p>
                         <a href="/recipes/<%= recipe._id %>" class="btn btn-primary">More details</a>
