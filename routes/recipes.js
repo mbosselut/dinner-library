@@ -5,6 +5,7 @@ var Comment = require("../models/comment");
 //if you require a directory and no file, it automatically requires 'index.js'
 var middleware = require("../middleware");
 
+//allows to extract json from recipes database in the index.ejs file
 router.get("/raw", (req, res) => {
     Recipe.find({}, function(err, allRecipes){
         if(err){
@@ -16,8 +17,20 @@ router.get("/raw", (req, res) => {
     });
 });
 
+//failed attempt to extract the recipe properties in the edit.ejs file
+// router.get(":id/raw", (req, res) => {
+//     Recipe.findById(req.params.id).exec(function(err, foundRecipe){
+//         if(err){
+//             console.log("OOPS something went wrong");
+//         } else {
+//             // console.log(allRecipes);
+//             res.json({recipe: foundRecipe});
+//         }
+//     });
+// });
+
 //INDEX ROUTE - Show all recipes
-router.get("/", function(req,res){
+router.get("/", function(req, res){
     //Get all recipes from DB
     Recipe.find({}, function(err, allRecipes){
         if(err){

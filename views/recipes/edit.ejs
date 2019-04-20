@@ -10,7 +10,7 @@
                 </div>
                 <div class="form-group">
                         <label for="category">Category :</label>
-                        <select name="recipe[category]">
+                        <select id="categoryDropdown" name="recipe[category]">
                                 <option value="Starter">Starter</option>
                                 <option value="Main">Main</option>
                                 <option value="Dessert">Dessert</option>
@@ -50,4 +50,28 @@
     </div>
 </div>
 
+<script>
+//Failed attempt to pre-select the dropdown menu based on current category of the recipe. cannot find the id
+// fetch(':id/raw')
+//         .then((response) =>{
+//             return response.json();
+//         })
+//         .then((myJson) => {
+//             console.log(myJson);
+//             recipe = myJson;
+//         });
+
+// function setSelectedIndex(s, i)
+
+// {
+
+// s.options[i-1].selected = true;
+
+// return;
+
+// }
+
+//setSelectedIndex(document.getElementById("categoryDropdown"),recipe.category);
+
+</script>
 <% include ../partials/footer %>
