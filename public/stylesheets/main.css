@@ -106,6 +106,10 @@
     padding-top: 15px;
 }
 
+#link-list a{
+    color : black;
+}
+
 .full-recipe img{
     object-fit:cover;
     width: 500px;
