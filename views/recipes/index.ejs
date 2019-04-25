@@ -54,7 +54,11 @@
 </div>
 
 <script>
-    
+    // ------------------------------------------------//
+    // ------------------ JAVASCRIPT ------------------//
+    // ------------------------------------------------//
+
+    //Assigning HTML elements and creating variables
     let resetButton = document.getElementById("reset");
     let houseFavorite = document.getElementById("tagHouseFavorite");
     let slowCooker = document.getElementById("tagSlowCooker");
@@ -67,6 +71,7 @@
     let recipesFilteredNames = [];
     let targetProperty;
     
+    //Extracting list of recipes from db et jsonifying it
     fetch('/recipes/raw')
         .then((response) =>{
             return response.json();
@@ -78,23 +83,9 @@
 
     //filters recipes based on ingredients search
     function filterEnLive(theInput){
-        // console.log(theInput.target.value);
         recipesFilter = recipes.filter(r => r.ingredients.toLowerCase().includes(theInput.target.value) > 0);
-        //console.log("filtered: " + recipesFilter);
-        // // Adding recipes
+        // Adding recipes
         fillRecipesFilter(recipesFilter);
-    }
-    
-    //hides cards based on the filter
-    function fillRecipesFilter(recipesFilter){
-        recipesFilteredNames = [];
-        recipesFilter.forEach(recipe => {recipesFilteredNames.push(recipe.name);});
-        for(var i = recipeThumbnails.length - 1; i >= 0; i--){
-            if(recipesFilteredNames.indexOf(recipeThumbnails[i].childNodes[3].textContent.toString()) === -1){
-                recipeThumbnails[i].classList.add("invisible");
-            };
-        };
-        
     }
 
     //filters by category
@@ -104,26 +95,50 @@
         fillRecipesFilter(recipesFilter);
     }
 
+    //filters by tag
     function filterTag(selection){
         console.log(this.innerHTML);
         recipesFilter = recipes.filter(r => r.tags.includes(this.innerHTML));
         fillRecipesFilter(recipesFilter);
     }
 
+        //hides cards based on newest filter
+    function fillRecipesFilter(recipesFilter){
+        reset();
+        recipesFilteredNames = [];
+        recipesFilter.forEach(recipe => {recipesFilteredNames.push(recipe.name);});
+        for(var i = recipeThumbnails.length - 1; i >= 0; i--){
+            if(recipesFilteredNames.indexOf(recipeThumbnails[i].childNodes[3].textContent.toString()) === -1){
+                recipeThumbnails[i].classList.add("invisible");
+            };
+        };
+    }
+
+    function reset(){
+        console.log("coucou");
+        for(var i = recipeThumbnails.length - 1; i >= 0; i--){
+            recipeThumbnails[i].classList.remove("invisible");;
+        };
+    };
+
+    // Adding all event listeners
     houseFavorite.addEventListener("click", filterTag);
+
     slowCooker.addEventListener("click", filterTag);
+
     vegetarian.addEventListener("click", filterTag);
 
     inputField.addEventListener("input", filterEnLive);
 
     categoryDropdown.addEventListener("change", filterCat);
 
+    resetButton.addEventListener("click", reset);
     resetButton.addEventListener("click", function(){
-        for(var i = recipeThumbnails.length - 1; i >= 0; i--){
-            recipeThumbnails[i].classList.remove("invisible");;
-        };
+        //Resetting the input field and dropdown menu
         inputField.value = "";
+        categoryDropdown.value="Category";
     });
+
 
 </script>
 
