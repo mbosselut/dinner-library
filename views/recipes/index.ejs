@@ -41,6 +41,8 @@
             </div>
             <!-- Creates a card for each recipe in DB -->
             <div id="recipe-grid">
+            <!-- Sorting all recipes by alphabetical order before displaying them-->
+            <% recipes.sort((a, b) => (a.name > b.name) ? 1 : -1); %>
             <% recipes.forEach(function(recipe){ %>
             <div class="recipe-card thumbnail">
                     <a href="/recipes/<%= recipe._id %>"><img id="recipe-img" src="<%= recipe.image %>"></a>
