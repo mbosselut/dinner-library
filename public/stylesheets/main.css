@@ -1,5 +1,10 @@
-.invisible {
-    display: none;
+
+/* --------------------------- ALL --------------------------- */
+
+
+/* --------------------------- INDEX PAGE --------------------------- */
+#full-content {
+    padding-left: 20px;
 }
 
 .grid-wrapper {
@@ -11,14 +16,52 @@
     flex-direction: column;
 }
 
+.jumbotron {
+    padding:20px;
+    margin-right:20px;
+}
+
 #recipe-grid {
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
-.try-center {
-    display: inline-block;
-    float: none;
+
+.thumbnail {
+    padding: 0;
+    text-align:center;
+} 
+
+.recipe-card {
+    width: auto;
+    max-width:225px;
+    float: left;
+    padding-right: 2%;
+    margin-bottom: 2%;
+    margin:10px;;
 }
+
+#recipe-img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    padding-top: 15px;
+}
+
+#link-list {
+    padding-right: 30px;
+    display:none;
+}
+
+#link-list a{
+    color : black;
+}
+
+.invisible {
+    display: none;
+}
+
+/* --------------------------- SHOW PAGE --------------------------- */
 
 .row-centered {
     text-align:center;
@@ -42,46 +85,7 @@
     /* top: 0; Stay at the top */
     /* right: 0; */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-}
-
-.thumbnail .caption {
-    padding: 0px;
-}
-
-#full-content {
-    padding-left: 20px;
-}
-
-.main-content {
-    text-align: center;
-}
-
-.jumbotron {
-    padding:20px;
-    margin-right:20px;
-}
-
-.thumbnail {
-    padding: 0;
-    text-align:center;
-}
-
-#recipe-library .thumbnail {
-    height: 300px;
-}
-
-.thumbnail .caption-full {
-    padding: 9px;
-}
-
-.delete-form {
-    display:inline;
-}
-
-#link-list {
-    padding-right: 30px;
-    display:none;
+    padding-top: 10px;
 }
 
 #ingredients-list {
@@ -97,27 +101,9 @@
     display: flex;
 }
 
-.recipe-card {
-    width: auto;
-    max-width:225px;
-    float: left;
-    padding-right: 2%;
-    margin-bottom: 2%;
-    margin:10px;;
+.full-recipe {
+    text-align: center;
 }
-
-#recipe-img {
-    object-fit: cover;
-    width: 200px;
-    height: 200px;
-    min-width: 200px;
-    padding-top: 15px;
-}
-
-#link-list a{
-    color : black;
-}
-
 .full-recipe img{
     object-fit:cover;
     width: 500px;
@@ -147,6 +133,11 @@
     display: block;
 }
 
+.delete-form {
+    display:inline;
+}
+
+/* --------------------------- MEDIA QUERIES --------------------------- */
 @media (min-width: 768px) {
     .grid-wrapper {
         display: grid;

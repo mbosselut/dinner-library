@@ -1,74 +1,76 @@
 <% include ../partials/header %>
-<div class="">
-<div class="row row-centered">
-    <div class="container well main-content col-sm-6 col-centered">
-        <div class="full-recipe">
-            <div class="col-md-6 thumbnail">
-                <img class="img-responsive" src="<%= recipe.image %> ">
-            </div>
-            <div class="caption-full col-md-6">
-                <h2><%= recipe.name %></h2>
-                <h6>A recipe by <a href="<%= recipe.url%>"><%= recipe.recipeAuthor%></a></h6>
-                <div id="recipe-overview">
-                    <div class="recipe-overview-cell">
-                        <span>Category : </span>
-                        <span><%=recipe.category%></span>
-                    </div>
-                    <div class="recipe-overview-cell recipe-middle-cell">
-                        <span>Cooking time :</span>
-                        <span><%= recipe.cookingTime %></span>
-                    </div>
-                    <div class="recipe-overview-cell">
-                        <span>Calories :</span>
-                        <span> <%= recipe.calories%></span>
-                    </div>
+<div>
+    <div class="row row-centered">
+        <div class="container well main-content col-sm-6 col-centered">
+            <div class="full-recipe">
+                <div class="col-md-6 thumbnail">
+                    <img class="img-responsive" src="<%= recipe.image %> ">
                 </div>
-                <div>
-                    <p>Ingredients :</p>
-                    <ul id="ingredients-list">
-                        <% if(recipe.ingredients){%>
+                <div class="caption-full col-md-6">
+                    <h2><%= recipe.name %></h2>
+                    <h6>A recipe by <a href="<%= recipe.url%>"><%= recipe.recipeAuthor%></a></h6>
+                    <div id="recipe-overview">
+                        <div class="recipe-overview-cell">
+                            <span>Category : </span>
+                            <span><%=recipe.category%></span>
+                        </div>
+                        <div class="recipe-overview-cell recipe-middle-cell">
+                            <span>Cooking time :</span>
+                            <span><%= recipe.cookingTime %></span>
+                        </div>
+                        <div class="recipe-overview-cell">
+                            <span>Calories :</span>
+                            <span> <%= recipe.calories%></span>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Ingredients :</p>
+                        <ul id="ingredients-list">
+                            <% if(recipe.ingredients){%>
                             <ul>
                                 <% recipe.ingredients.split(",").forEach(function(ingredient){%>
-                                    <li><%= ingredient %></li>
+                                <li><%= ingredient %></li>
                                 <% }); %>
-                            </ul>  
-                        <% };%>    
-                    </ul>
+                            </ul>
+                            <% };%>
+                        </ul>
+                    </div>
+                    <p><%= recipe.description %></p>
+                    <% if(recipe.tags){%>
+                    <p><em>Tags: <%= recipe.tags%></em></p>
+                    <% } %>
+                    <% if(currentUser && recipe.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-warning" href="/recipes/<%= recipe._id%>/edit">Edit</a>
+                    <form class="delete-form" action="/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <% } %>
+                    <p>
+                        <em>Submitted by <%= recipe.author.username %></em>
+                    </p>
                 </div>
-                <p><%= recipe.description %></p>
-                <% if(recipe.tags){%>
-                <p><em>Tags: <%= recipe.tags%></em></p>
-                <% } %>
-                <% if(currentUser && recipe.author.id.equals(currentUser._id)){ %>
-                <a class="btn btn-warning" href="/recipes/<%= recipe._id%>/edit">Edit</a>
-                <form class="delete-form" action="/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
-                <% } %>
-                <p>
-                    <em>Submitted by <%= recipe.author.username %></em>
-                </p>
+            </div>
+        </div>
+        <div class="sidebar col-sm-3 col-centered">
+            <div id="link-list">
+                <p>Favorite recipe creators</p>
+                <div class="list-group">
+                    <a href="https://www.recipetineats.com/">
+                        <li class="list-group-item">RecipeTin Eats</li>
+                    </a>
+                    <a href="https://minimalistbaker.com/">
+                        <li class="list-group-item">Minimalist Baker</li>
+                    </a>
+                    <a href="http://www.mobkitchen.co.uk/">
+                        <li class="list-group-item">Mob Kitchen</li>
+                    </a>
+                    <a href="https://www.wellplated.com/">
+                        <li class="list-group-item">Well Plated</li>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    <div id="recipe-page-links" class="sidebar col-sm-3 col-centered">
-            <div id="link-list">
-                    <p>Favorite recipe creators</p>
-                    <div class="list-group">
-                        <a href="https://www.recipetineats.com/"><li class="list-group-item">RecipeTin Eats</li></a>
-                        <a href="https://minimalistbaker.com/"><li class="list-group-item">Minimalist Baker</li></a>
-                        <a href="http://www.mobkitchen.co.uk/"><li class="list-group-item">Mob Kitchen</li></a>
-                        <a href="https://www.wellplated.com/"><li class="list-group-item">Well Plated</li></a>
-                    </div>
-                </div>
-        <!-- <p class="lead">Dinner library</p>
-        <div class"list-group">
-            <li class="list-group-item">Link 1</li>
-            <li class="list-group-item">Link 2</li>
-            <li class="list-group-item">Link 3</li>
-        </div> -->
-    </div>
-</div>
 </div>
 <div id="recipe-comments" class="well row">
     <div class="text-right">
