@@ -2,13 +2,22 @@
 /* --------------------------- ALL --------------------------- */
 :root {
     --first-color: #CEDAD7;
-    --second-color: #FDF5E4;
+    --second-color: #DFE7E5;
     --third-color: #B3C6C1;
-    --button-color: #F1635F;
+    --button-color: #9C9496;
+    --text-color: #5B4C51;
+}
+
+body {
+    color: var(--text-color);
 }
 
 .navbar {
-    background-color: var(--third-color);
+    background-color: var(--button-color);
+}
+
+.navbar a {
+    color: var(--second-color) !important;
 }
 
 /* --------------------------- INDEX PAGE --------------------------- */
@@ -29,10 +38,17 @@
     padding:20px;
     margin-right:20px;
     background-color: var(--first-color);
+    border-radius: 4px;
+}
+
+.jumbotron a {
+    background-color: var(--button-color);
+    color: var(--second-color);
+    border: 1px solid var(--text-color);
 }
 
 .tags button {
-    background-color: #F5928F;
+    background-color: var(--button-color);
     color: var(--second-color);
 }
 
@@ -40,6 +56,10 @@
     height: 25px;
     border-radius: 4px;
     background-color: var(--first-color);
+}
+
+#textField {
+    width: 200px;
 }
 
 #recipe-grid {
@@ -82,7 +102,8 @@
 
 #link-list li {
     background-color: var(--second-color);
-    color : black;
+    color: var(--text-color);
+    border: 0.5px solid var(--text-color);
 }
 
 
