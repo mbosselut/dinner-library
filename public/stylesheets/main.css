@@ -1,6 +1,15 @@
 
 /* --------------------------- ALL --------------------------- */
+:root {
+    --first-color: #CEDAD7;
+    --second-color: #FDF5E4;
+    --third-color: #B3C6C1;
+    --button-color: #F1635F;
+}
 
+.navbar {
+    background-color: var(--third-color);
+}
 
 /* --------------------------- INDEX PAGE --------------------------- */
 #full-content {
@@ -19,11 +28,18 @@
 .jumbotron {
     padding:20px;
     margin-right:20px;
+    background-color: var(--first-color);
+}
+
+.tags button {
+    background-color: #F5928F;
+    color: var(--second-color);
 }
 
 .recipe-show input, select, button {
     height: 25px;
     border-radius: 4px;
+    background-color: var(--first-color);
 }
 
 #recipe-grid {
@@ -36,13 +52,19 @@
     text-align:center;
 } 
 
+.thumbnail a {
+    background-color: var(--button-color);
+    border: black;
+}
+
 .recipe-card {
     width: auto;
     max-width:225px;
     float: left;
     padding-right: 2%;
     margin-bottom: 2%;
-    margin:10px;;
+    margin:10px;
+    background-color: var(--second-color);
 }
 
 #recipe-img {
@@ -58,9 +80,11 @@
     display:none;
 }
 
-#link-list a{
+#link-list li {
+    background-color: var(--second-color);
     color : black;
 }
+
 
 .invisible {
     display: none;
