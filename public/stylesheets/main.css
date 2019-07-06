@@ -1,11 +1,11 @@
 
 /* --------------------------- ALL --------------------------- */
 :root {
-    --first-color: #CEDAD7;
-    --second-color: #DFE7E5;
-    --third-color: #B3C6C1;
-    --button-color: #9C9496;
+    --background-color: #CEDAD7;
+    --second-color: #CEDAD7;
+    --button-color: #B7B1B2;
     --text-color: #5B4C51;
+    --small-text-color: #FFFEFD;
 }
 
 body {
@@ -16,13 +16,26 @@ body {
     background-color: var(--button-color);
 }
 
-.navbar a {
-    color: var(--second-color) !important;
+.collapse li {
+    background-color: var(--button-color);
+}
+
+#page-title {
+    color: var(--text-color);
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: var(--text-color);
 }
 
 /* --------------------------- INDEX PAGE --------------------------- */
 #full-content {
     padding-left: 20px;
+}
+
+.btn {
+    color: var(--small-text-color);
+    border: 2px solid red;
 }
 
 .grid-wrapper {
@@ -37,25 +50,28 @@ body {
 .jumbotron {
     padding:20px;
     margin-right:20px;
-    background-color: var(--first-color);
+    background-color: var(--background-color);
     border-radius: 4px;
+    border: 1px solid var(--text-color);
 }
 
 .jumbotron a {
     background-color: var(--button-color);
-    color: var(--second-color);
+    color: var(--small-text-color);
     border: 1px solid var(--text-color);
 }
 
 .tags button {
     background-color: var(--button-color);
-    color: var(--second-color);
+    color: var(--small-text-color);
+    height:30px;
+    border: ;
 }
 
 .recipe-show input, select, button {
     height: 25px;
     border-radius: 4px;
-    background-color: var(--first-color);
+    background-color: var(--background-color);
 }
 
 #textField {
@@ -72,9 +88,9 @@ body {
     text-align:center;
 } 
 
-.thumbnail a {
+.thumbnail .btn {
     background-color: var(--button-color);
-    border: black;
+    border: 1px solid var(--text-color);
 }
 
 .recipe-card {
@@ -85,6 +101,7 @@ body {
     margin-bottom: 2%;
     margin:10px;
     background-color: var(--second-color);
+    border: 1px solid var(--text-color);
 }
 
 #recipe-img {
