@@ -33,9 +33,15 @@ body {
     padding-left: 20px;
 }
 
-.btn {
+.recipe-card .btn, .jumbotron .btn {
     color: var(--small-text-color);
-    border: 2px solid red;
+    transition: transform 0.5s, background-color 0.5s;
+}
+
+.recipe-card .btn:hover, .jumbotron .btn:hover{
+    /* color: var(--text-color); */
+    background-color: var(--text-color);
+    transform: scale(1.05);
 }
 
 .grid-wrapper {
@@ -122,7 +128,6 @@ body {
     color: var(--text-color);
     border: 0.5px solid var(--text-color);
 }
-
 
 .invisible {
     display: none;
