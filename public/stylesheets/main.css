@@ -81,7 +81,6 @@ body {
     background-color: var(--button-color);
     color: var(--small-text-color);
     height:30px;
-    border: ;
 }
 
 .recipe-show input, select, button {
