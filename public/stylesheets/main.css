@@ -12,6 +12,16 @@ body {
     color: var(--text-color);
 }
 
+.jumbotron * {
+    opacity:0;
+    animation: 2s fadein forwards;
+}
+
+@keyframes fadein {
+    100% {
+        opacity: 1;
+    }
+}
 .navbar {
     background-color: var(--button-color);
 }
