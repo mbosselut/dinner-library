@@ -26,12 +26,13 @@ body {
     }
 }
 .navbar {
-    background-color: var(--dark-shade);
-
+    /* background-color: var(--dark-shade); */
+    background: rgb(76,94,115);
+    background: linear-gradient(90deg, rgba(76,94,115,1) 55%, rgba(131,251,169,1) 85%);    
 }
 
 .collapse li {
-    background-color: var(--dark-shade);
+    background-color: var(--main-color);
 }
 
 #page-title {
@@ -86,10 +87,15 @@ body {
     border: 1px solid var(--dark-accent);
 }
 
+#inputFields * {
+    margin: 3px;
+}
+
 .tags button {
     background-color: var(--dark-shade);
     color: var(--small-text-color);
     height:30px;
+    margin: 3px;
 }
 
 .recipe-show input, select, button {
