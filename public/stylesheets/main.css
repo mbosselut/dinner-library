@@ -48,9 +48,19 @@ body {
     padding-left: 20px;
 }
 
+.recipe-card * {
+    display: inline-block;
+}
+
 .recipe-card .btn, .jumbotron .btn {
     color: var(--small-text-color);
     transition: transform 0.5s, background-color 0.5s;
+}
+
+.recipe-card .btn {
+    position: absolute;
+    left: 4em;
+    bottom: 10px;
 }
 
 .recipe-card .btn:hover, .jumbotron .btn:hover{
@@ -109,8 +119,13 @@ body {
 }
 
 #recipe-grid {
+    /* display:flex; */
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* max-width: 100%; */
+    /* flex-wrap: wrap; */
+    /* justify-content: start; */
+    /* justify-content: space-evenly safe; */
 }
 
 .thumbnail {
@@ -132,6 +147,8 @@ body {
     margin:10px;
     background-color: var(--light-shade);
     border: 1px solid var(--dark-accent);
+    position: relative;
+    height: 310px;
 }
 
 #recipe-img {
