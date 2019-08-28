@@ -250,16 +250,41 @@ body {
     display:inline;
 }
 
+#recipe-buttons .btn {
+    height: 35px;
+    width: 70px;
+}
+/* 
+#footer-recipe {
+    fix to align to bottom of container
+} 
+*/
 /* --------------------------- MEDIA QUERIES --------------------------- */
 @media (min-width: 768px) {
     .grid-wrapper {
         display: grid;
         grid-template-columns: 1fr 200px;
     }
+
     #link-list  { display: block; }
+
 }
 
 @media (min-width: 320px) and (max-width: 480px){
+/* On Index page */
+    .recipe-card {
+        width: auto;
+        height:250px;
+        padding-right: 0%;
+        margin-bottom: 2%;
+        margin-left:0px;
+        display:flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: stretch;
+    }
+
     #recipe-img {
         object-fit: cover;
         width: 120px;
@@ -268,17 +293,26 @@ body {
         padding-top: 15px;
     }
 
-    .recipe-card {
-        width: auto;
-        max-width:225px;
-        float: left;
-        padding-right: 0%;
-        margin-bottom: 2%;
-        margin-left:0px;;
+    .recipe-card h4 {
+        font-size: 1.2em;
     }
-
+    .recipe-card .btn {
+        position: static;
+    }
+    
     #recipe-grid {
         display:grid;
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    /* On Show page */
+    .full-recipe img{
+        object-fit:cover;
+        width: 250px;
+        height:250px;
+    }
+
+    .caption-full h2 {
+        font-size: 1.5em;
     }
 }

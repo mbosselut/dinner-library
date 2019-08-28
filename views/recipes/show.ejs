@@ -36,18 +36,22 @@
                         </ul>
                     </div>
                     <p><%= recipe.description %></p>
-                    <% if(recipe.tags){%>
-                    <p><em>Tags: <%= recipe.tags%></em></p>
-                    <% } %>
-                    <% if(currentUser && recipe.author.id.equals(currentUser._id)){ %>
-                    <a class="btn btn-warning" href="/recipes/<%= recipe._id%>/edit">Edit</a>
-                    <form class="delete-form" action="/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
-                    <% } %>
-                    <p>
-                        <em>Submitted by <%= recipe.author.username %></em>
-                    </p>
+                    <div id="footer-recipe">
+                        <% if(recipe.tags){%>
+                        <p><em>Tags: <%= recipe.tags%></em></p>
+                        <% } %>
+                        <div id="recipe-buttons">
+                            <% if(currentUser && recipe.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-warning" href="/recipes/<%= recipe._id%>/edit">Edit</a>
+                            <form class="delete-form" action="/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                            <% } %>
+                        </div>
+                        <p>
+                            <em>Submitted by <%= recipe.author.username %></em>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
