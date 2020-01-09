@@ -1,5 +1,5 @@
 # dinner-library
-Library of our favorite dinner recipes
+Library of my favorite dinner recipes; recipes can be added, updated or deleted. Several filter options.
 
 ![App screenshot](https://i.ibb.co/jZwkfNW/Screenshot-from-2020-01-09-14-42-48.png)
 
